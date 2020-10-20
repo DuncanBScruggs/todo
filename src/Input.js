@@ -7,7 +7,7 @@ function Input(props) {
     function clickHandler(e) {
         e.preventDefault();
         // console.log()
-        if(e.target.elements.todo.value == ""){
+        if(e.target.elements.todo.value === ""){
             return;
         }
 

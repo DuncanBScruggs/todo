@@ -16,7 +16,7 @@ function Header(props){
                                     return (
                                         <li class="nav-item">
                                             <a 
-                                                href={item.url}
+                                                href="#"
                                                 onClick={() => props.setPage(index)} 
                                                 class={"nav-link " + (props.currentPage === index ? "active" : "")}>
                                                 {item.readableName}
