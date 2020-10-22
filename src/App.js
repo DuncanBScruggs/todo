@@ -2,11 +2,11 @@ import React from 'react';
 import Header from "./Header";
 import Input from "./Input";
 import Item from "./Item";
-
+import NothingToDo from "./NothingToDo";
 
 
 class App extends React.Component {
-  constructor(){
+  constructor() {
     super();
 
     this.pages = [
@@ -14,10 +14,10 @@ class App extends React.Component {
       { readableName: "Active", url: "active" },
       { readableName: "Completed", url: "completed" }
     ];
-    
+
     this.state = {
-        currentPage: 0,
-        todoList: []
+      currentPage: 0,
+      todoList: []
     }
     this.filter = ""
 
@@ -27,23 +27,23 @@ class App extends React.Component {
     this.removeItem = this.removeItem.bind(this)
   }
 
-  removeItem(todoID){
+  removeItem(todoID) {
     console.log("remove Item")
     let copy = this.state.todoList;
-    copy.splice(parseInt(todoID),1)
-    window.localStorage.setItem("todoList",copy)
-    this.setState({ todoList: copy})
+    copy.splice(parseInt(todoID), 1)
+    window.localStorage.setItem("todoList", copy)
+    this.setState({ todoList: copy })
   }
 
-  changeStatus(todoID){
+  changeStatus(todoID) {
     console.log("change status")
     let copy = this.state.todoList;
     copy[parseInt(todoID)].status = !copy[parseInt(todoID)].status
-    this.setState({ todoList: copy})
+    this.setState({ todoList: copy })
   }
 
-  setToDo(todoItem){
-    this.setState({ todoList: this.state.todoList.concat(todoItem)})
+  setToDo(todoItem) {
+    this.setState({ todoList: this.state.todoList.concat(todoItem) })
   }
 
   setPage(newPageNum) {
@@ -65,9 +65,9 @@ class App extends React.Component {
       this.setState({ todoList: JSON.parse(todoList) })
     }
     else {
-        console.log("did not find currentPage")
-        window.localStorage.setItem("currentPage", 0)
-        window.localStorage.setItem("todoList", JSON.stringify(this.state.todoList))
+      console.log("did not find currentPage")
+      window.localStorage.setItem("currentPage", 0)
+      window.localStorage.setItem("todoList", JSON.stringify(this.state.todoList))
     }
   }
 
@@ -75,32 +75,37 @@ class App extends React.Component {
     console.log("in componentDidUpdate", this.state.currentPage)
     window.localStorage.setItem("currentPage", JSON.stringify(this.state.currentPage))
     window.localStorage.setItem("todoList", JSON.stringify(this.state.todoList))
-    }
+  }
 
-  render(){
-      return(
-        <div class = "brand-main">
+  render() {
+    return (
+      <div class="brand-main">
 
-          <Header 
-            pages={this.pages}
+        <Header
+          pages={this.pages}
+          currentPage={this.state.currentPage}
+          setPage={this.setPage}
+        />
+
+        <div class="container">
+
+          <Input
+            todoList={this.state.todoList}
+            setToDo={this.setToDo}
+          />
+
+        
+          <Item todoList={this.state.todoList}
+            changeStatus={this.changeStatus}
             currentPage={this.state.currentPage}
-            setPage={this.setPage}
+            removeItem={this.removeItem}
           />
-      
-          <Input 
-            todoList= {this.state.todoList}
-            setToDo= {this.setToDo}
-          />
-
-          {(this.state.todoList === []) ?  "" : <Item todoList= {this.state.todoList}
-                                                      changeStatus= {this.changeStatus}
-                                                      currentPage={this.state.currentPage}
-                                                      removeItem={this.removeItem}
-          />}
-
           
+
+
         </div>
-      )
+      </div>
+    )
   }
 
 

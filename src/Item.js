@@ -39,16 +39,16 @@ function Item(props) {
             return (
                 // 
 
-                <div class={"input-group mb-3 " + (!show && "d-none")}>
+                <div class={"input-group my-3 " + (!show && "d-none")}>
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input id={index} onClick={statusHandler} type="checkbox" aria-label="Checkbox for completed" />
+                            <input id={index} onChange={statusHandler} type="checkbox" aria-label="Checkbox for completed" checked = {!item.status}/>
                         </div>
                     </div>
                     <input type="text" class="form-control" placeholder={item.name} aria-label="Text input with checkbox" disabled />
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <input id={index} type="checkbox" onClick={removeHandler} aria-label="Checkbox for remove" />
+                            <button id={index} class="btn btn-secondary"onClick={removeHandler} aria-label="Checkbox for remove"></button>
                         </div>
                     </div>
                 </div>

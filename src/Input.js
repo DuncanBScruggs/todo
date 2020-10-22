@@ -28,7 +28,7 @@ function Input(props) {
                         
                 <div class="input-group-append">
                     <button
-                        class="btn btn-outline-secondary"
+                        class="btn btn-secondary"
                         type="submit">Add Item</button>
                 </div>
             </div>
