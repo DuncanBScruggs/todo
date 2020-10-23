@@ -42,11 +42,10 @@ class App extends React.Component {
   // removes all completed items from todoList
   removeCompleted(){
     console.log("remove completed")
-    let copy = this.state.todoList;
-    this.state.todoList.map((item, index) => {
+    let copy = this.state.todoList.filter((item, index) => {
       console.log(!item.status)
-      if(!item.status){
-        copy.splice(index, 1)
+      if(item.status){
+        return item;
       }
     })
     window.localStorage.setItem("todoList", copy)
