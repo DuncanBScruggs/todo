@@ -2,6 +2,8 @@ import React from "react";
 
 
 function Header(props){
+
+    // logic for showing in the header what view you are in
     let page = ""
     if (props.currentPage === 0){
         page = "All"
@@ -13,8 +15,9 @@ function Header(props){
         page = "Completed"
     }
 
-    return(
 
+    return(
+            // shows the navbar
             <nav class="navbar navbar-expand-lg navbar-dark brand fixed-top">
                 <div class="container">
                     <a class="navbar-brand" href="#">{"To Do List: " + (page)}</a>
@@ -24,6 +27,7 @@ function Header(props){
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
                             {
+                                // loops through the pages prop and populates the Nav Bar with however many items in the prop
                                 props.pages.map((item, index) => {
                                     return (
                                         <li class="nav-item">
